@@ -201,3 +201,33 @@ a[download]:hover {
 }
 
 
+
+/* ---------- Footer Styling ---------- */
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background-color: #0d1b2a;
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-top: 3rem;
+  border-top: 1px solid #00f2ff33;
+}
+
+footer p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+footer a {
+  color: #00f2ff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #00d1cc;
+}
+
+
+
