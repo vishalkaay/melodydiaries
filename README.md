@@ -5,7 +5,7 @@ Welcome to my personal portfolio website — a carefully crafted space that blen
 <br>
 
 ## 🌟 Live Website
-**Check it out here →** [vishalkaay.github.io](https://vishalkaay.github.io)
+**Check it out here →** [vishalkaay.github.io](https://vishalkaay.github.io/melodydiaries)
 
 <br>
 
