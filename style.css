@@ -205,7 +205,7 @@ a[download]:hover {
 /* ---------- Footer Styling ---------- */
 footer {
   text-align: center;
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem;
   background-color: #0d1b2a;
   color: #ccc;
   font-size: 0.95rem;
@@ -213,21 +213,25 @@ footer {
   border-top: 1px solid #00f2ff33;
 }
 
+.footer-socials {
+  margin-bottom: 1rem;
+}
+
+.footer-socials a {
+  margin: 0 12px;
+  color: #00f2ff;
+  font-size: 1.6rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+  color: #00d1cc;
+  transform: scale(1.2);
+}
+
 footer p {
   margin: 0;
-  line-height: 1.6;
+  font-size: 0.9rem;
 }
-
-footer a {
-  color: #00f2ff;
-  text-decoration: none;
-  margin: 0 0.5rem;
-  transition: color 0.3s ease;
-}
-
-footer a:hover {
-  color: #00d1cc;
-}
-
 
 
