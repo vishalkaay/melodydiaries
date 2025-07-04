@@ -158,4 +158,46 @@ a[download]:hover {
 .yt-button:hover {
   background: #00d1cc;
 }
+/* ---------- Profile Section ---------- */
+#profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  border-bottom: 2px solid #00f2ff33;
+}
+
+.profile-container {
+  text-align: center;
+  background: #1b263b;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+  max-width: 400px;
+  width: 100%;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #00f2ff;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 15px #00f2ff88;
+}
+
+.profile-container h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #00f2ff;
+}
+
+.profile-container p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+}
+
 
