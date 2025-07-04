@@ -62,6 +62,6 @@ With glowing panels, glass morphism, and neon text, the UI reflects my personali
 ## 🛠️ How to Run Locally
 
 ```bash
-git clone https://github.com/vishalkaay/vishalkaay.github.io.git
-cd vishalkaay.github.io
+git clone https://github.com/vishalkaay/melodydiaries.git
+cd melodydiaries
 # open index.html in your browser
