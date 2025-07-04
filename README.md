@@ -52,10 +52,10 @@ With glowing panels, glass morphism, and neon text, the UI reflects my personali
 ## 📫 Connect With Me
 
 [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github)](https://github.com/vishalkaay)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077b5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/vishalkaay)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram)](https://instagram.com/vishalkaay)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077b5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/vishal-raj-2a074823b/)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram)](https://instagram.com/_vish.aaal)
 [![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube)](https://youtube.com/@vishalkaaaay)
-[![Mail](https://img.shields.io/badge/Email-333?style=for-the-badge&logo=gmail)](mailto:vishalkaay@example.com)
+[![Mail](https://img.shields.io/badge/Email-333?style=for-the-badge&logo=gmail)](mailto:vishalr23@iitk.ac.in)
 
 <br>
 
