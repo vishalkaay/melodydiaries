@@ -167,12 +167,13 @@
       height: 100%;
       background: var(--accent);
     }
+.timeline-item {
+  position: relative; /* <-- Add this line */
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
 
-    .timeline-item {
-      border-left: 2px solid var(--accent);
-      padding-left: 1rem;
-      margin-bottom: 1rem;
-      position: relative;
     }
     .timeline-item span {
       font-weight: bold;
