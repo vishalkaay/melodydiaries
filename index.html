@@ -175,14 +175,15 @@
 }
 
     }
-    .timeline-item span {
-      font-weight: bold;
-      color: var(--accent);
-      position: absolute;
-      left: -90px;
-      top: 0;
-      font-size: 0.9rem;
-    }
+  .timeline-item span {
+  font-weight: bold;
+  color: var(--accent);
+  position: absolute;
+  left: -60px; /* or even -40px */
+  top: 0;
+  font-size: 0.9rem;
+  width: max-content; /* ensures long text doesn't wrap oddly */
+}
 
     blockquote {
       font-style: italic;
