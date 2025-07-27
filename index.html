@@ -5,9 +5,191 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vishal Raj | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f0f0f;
+      --bg-neon: #121212;
+      --text-light: #e0e0e0;
+      --accent: #00fff7;
+      --card-bg: rgba(0, 255, 255, 0.1);
+      --glass: rgba(255, 255, 255, 0.05);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 2rem 5%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+
+    nav {
+      margin-top: 1.5rem;
+    }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: white;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      padding: 2rem;
+      background: var(--glass);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+    }
+    section h2 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    ul li {
+      margin: 0.75rem 0;
+      position: relative;
+      padding-left: 25px;
+    }
+    ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    a[download], .yt-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 15px var(--accent);
+      transition: 0.3s ease;
+    }
+    a[download]:hover, .yt-button:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 30px var(--accent), 0 0 40px var(--accent);
+    }
+
+    #profile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+      background: var(--bg-neon);
+      border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+    }
+    .profile-container {
+      text-align: center;
+      background: var(--glass);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      margin-bottom: 1rem;
+      box-shadow: 0 0 20px var(--accent);
+    }
+    .profile-container h1 {
+      color: var(--accent);
+      font-size: 1.8rem;
+    }
+
+    .youtube-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: var(--glass);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    .youtube-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+    .youtube-info h3 {
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .youtube-info p {
+      color: #aaa;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #0a0a0a;
+      color: #ccc;
+      border-top: 1px solid rgba(0, 255, 255, 0.15);
+    }
+    .footer-socials a {
+      margin: 0 10px;
+      color: var(--accent);
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .footer-socials a:hover {
+      transform: scale(1.2);
+      color: #00d1cc;
+    }
+
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
 <body>
   <header>
     <h1>Vishal</h1>
