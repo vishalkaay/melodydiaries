@@ -101,7 +101,7 @@
       color: var(--accent);
     }
 
-    a[download], .yt-button {
+    a[download], .yt-button, button {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.75rem 1.5rem;
@@ -112,8 +112,10 @@
       text-decoration: none;
       box-shadow: 0 0 15px var(--accent);
       transition: 0.3s ease;
+      border: none;
+      cursor: pointer;
     }
-    a[download]:hover, .yt-button:hover {
+    a[download]:hover, .yt-button:hover, button:hover {
       background: #fff;
       color: #000;
       box-shadow: 0 0 30px var(--accent), 0 0 40px var(--accent);
@@ -150,6 +152,53 @@
     .profile-container h1 {
       color: var(--accent);
       font-size: 1.8rem;
+    }
+
+    .skills-container .skill {
+      margin-bottom: 1rem;
+    }
+    .bar {
+      background: #333;
+      border-radius: 50px;
+      overflow: hidden;
+      height: 15px;
+    }
+    .fill {
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .timeline-item {
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .timeline-item span {
+      font-weight: bold;
+      color: var(--accent);
+      position: absolute;
+      left: -90px;
+      top: 0;
+      font-size: 0.9rem;
+    }
+
+    blockquote {
+      font-style: italic;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #ccc;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      border: none;
+      background: #1a1a1a;
+      color: #fff;
     }
 
     .youtube-card {
@@ -199,31 +248,13 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media screen and (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-      header h1 {
-        font-size: 2rem;
-      }
-      section {
-        padding: 1.5rem;
-      }
-      .youtube-card {
-        flex-direction: column;
-        text-align: center;
-      }
     }
   </style>
 </head>
@@ -234,8 +265,12 @@
     <nav>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#testimonials">Testimonials</a>
       <a href="#resume">Resume</a>
       <a href="#channel">YouTube</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -262,6 +297,44 @@
     </ul>
   </section>
 
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div class="skill">
+        <label>Python</label>
+        <div class="bar"><div class="fill" style="width: 85%"></div></div>
+      </div>
+      <div class="skill">
+        <label>Machine Learning</label>
+        <div class="bar"><div class="fill" style="width: 75%"></div></div>
+      </div>
+      <div class="skill">
+        <label>Music Production</label>
+        <div class="bar"><div class="fill" style="width: 65%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span>2024 — Present</span>
+        <p><strong>Senior Executive, Udghosh</strong><br>Handled design, event coordination, and social media strategy.</p>
+      </div>
+      <div class="timeline-item">
+        <span>2023</span>
+        <p><strong>Intern — ML Kickstart</strong><br>Completed ML projects and worked on deployment using Streamlit + APIs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <blockquote>"Vishal’s dedication to both tech and music is rare. A creative mind with strong execution!"</blockquote>
+    <p>— Prof. XYZ, IIT Kanpur</p>
+  </section>
+
   <section id="resume">
     <h2>Resume</h2>
     <a href="assets/resume.pdf" download>📄 Download My Resume</a>
@@ -277,6 +350,16 @@
         <a href="https://www.youtube.com/@vishalkaaaay" target="_blank" class="yt-button">Visit Channel</a>
       </div>
     </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="https://formspree.io/f/YOUR_ID" method="POST">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <textarea name="message" rows="5" placeholder="Your message..."></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <footer>
