@@ -35,6 +35,7 @@
     header {
       text-align: center;
       margin-bottom: 3rem;
+      animation: fadeInDown 1s ease-in-out;
     }
     header h1 {
       font-size: 3rem;
@@ -49,16 +50,28 @@
 
     nav {
       margin-top: 1.5rem;
+      animation: fadeInUp 1s ease-in-out;
     }
     nav a {
       color: var(--accent);
       text-decoration: none;
       margin: 0 1rem;
       font-weight: bold;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    nav a:hover {
-      color: white;
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      left: 0;
+      bottom: -5px;
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
     }
 
     section {
@@ -68,6 +81,7 @@
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
       backdrop-filter: blur(8px);
+      animation: fadeIn 1s ease-in-out;
     }
     section h2 {
       font-size: 2rem;
@@ -128,6 +142,10 @@
       border: 3px solid var(--accent);
       margin-bottom: 1rem;
       box-shadow: 0 0 20px var(--accent);
+      transition: transform 0.3s ease;
+    }
+    .profile-img:hover {
+      transform: scale(1.05);
     }
     .profile-container h1 {
       color: var(--accent);
@@ -170,11 +188,26 @@
       margin: 0 10px;
       color: var(--accent);
       font-size: 1.5rem;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, color 0.3s ease;
     }
     .footer-socials a:hover {
       transform: scale(1.2);
       color: #00d1cc;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media screen and (max-width: 768px) {
@@ -186,6 +219,10 @@
       }
       section {
         padding: 1.5rem;
+      }
+      .youtube-card {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
