@@ -1,51 +1,60 @@
 # 🎤 Vishalkaay | Portfolio Website
 
-Welcome to my personal portfolio website — a carefully crafted space that blends technology, creativity, and a bit of soul. Built with 💻 HTML, 🎨 CSS, and 💡 a lot of love, this site showcases who I am — an engineer, a creator, a singer, and an eternal learner from **IIT Kanpur**.
+My personal corner of the internet — a space that blends engineering, curiosity, and a bit of soul. An engineer, a builder, a singer, and an eternal learner from **IIT Kanpur**.
 
 <br>
 
 ## 🌟 Live Website
-**Check it out here →** [vishalkaay.github.io](https://vishalkaay.github.io/melodydiaries)
+**Check it out here →** [vishalkaay.github.io/melodydiaries](https://vishalkaay.github.io/melodydiaries)
 
 <br>
 
-## 📌 What You’ll Find
+## 📌 What You'll Find
 
-🔹 **About Me** – A short story of who I am and what I love  
-🔹 **Projects** – Machine learning, system tools, and research work  
-🔹 **Resume** – Downloadable with one click  
-🔹 **YouTube Music** – My creative side — old Bollywood covers, reimagined  
-🔹 **Profile Section** – A glowing intro to Vishalkaaay 😎  
+🔹 **The Frequency** – A short story of who I am and what I love
+🔹 **Work** – Hardware, GPU computing, machine learning, and security projects
+🔹 **Operating Range** – The tools and thinking I build with
+🔹 **After Hours** – My creative side — old Bollywood covers, reimagined
+🔹 **Off the Clock** – Rivers, ridgelines, and the detours in between
+🔹 **Résumé** – Downloadable with one click
 🔹 **Socials** – Find me everywhere that matters
 
 <br>
 
-## 🚀 Technologies Used
+## 🚀 Built With
 
-- **HTML5** – Clean semantic structure  
-- **CSS3** – Custom UI design with shadows, gradients & glowing effects  
-- **Font Awesome** – For beautiful icons  
-- **GitHub Pages** – Free and fast hosting  
+- **HTML5** – Semantic, accessible structure
+- **CSS3** – Fluid type, CSS grid, custom properties, no framework
+- **Vanilla JavaScript** – Canvas signal field, scroll reveals, custom cursor, zero dependencies
+- **Google Fonts** – Syne, Manrope, DM Mono
+- **GitHub Pages** – Free and fast hosting
 
 <br>
 
 ## 🎯 Projects Highlighted
 
-- **Mess Sentiment Analyzer** – NLP-based food feedback ML model  
-- **Tweet Decoder** – AI tool to interpret tone and type of tweets  
-- **Recommendation System** – Built with collaborative & content filtering  
-- **Linux CLI Tool** – Real-time system info from the terminal  
-- **EHS Chemical Analysis** – Sustainable process study on Fluroxypyr  
-- ...and more!
+- **Pipelined AES-128 Hardware Core** – 11-stage Verilog pipeline on a PYNQ-Z2, NIST-verified
+- **Gene Expression with Dual Attention** – Hierarchical BiLSTM across 19,799 genes
+- **GIFSleuth** – Zero-dependency GIF forensic scanner, seven detectors, 143 tests
+- **2D Poisson Solver** – Spectral FFT solve taken from 28.9 s to 0.36 ms on GPU
+- ...and more in the [code archive](https://github.com/vishalkaay)
 
 <br>
 
 ## ✨ Design Philosophy
 
-> “Process over product. Becoming over being.”  
+> "Process over product. Becoming over being."
 > This site is not a conclusion, but a live evolving narrative — just like me.
 
-With glowing panels, glass morphism, and neon text, the UI reflects my personality: focused, creative, and just a little retro-futuristic. 😉
+Editorial typography, an acid-on-black palette, and a generative signal field in the hero. Focused, creative, and just a little restless. 😉
+
+<br>
+
+## ♿ Notes
+
+- Respects `prefers-reduced-motion` — animation stands down when you ask it to
+- Keyboard navigable with a skip link and visible focus rings
+- Images ship as WebP with JPEG fallbacks
 
 <br>
 
@@ -53,8 +62,8 @@ With glowing panels, glass morphism, and neon text, the UI reflects my personali
 
 [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github)](https://github.com/vishalkaay)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077b5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/vishal-raj-2a074823b/)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram)](https://instagram.com/_vish.aaaal)
-[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube)](https://youtube.com/@vishalkaaaay)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/highonnotess/)
+[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@vishalr23)
 [![Mail](https://img.shields.io/badge/Email-333?style=for-the-badge&logo=gmail)](mailto:vishalr23@iitk.ac.in)
 
 <br>
@@ -64,4 +73,12 @@ With glowing panels, glass morphism, and neon text, the UI reflects my personali
 ```bash
 git clone https://github.com/vishalkaay/melodydiaries.git
 cd melodydiaries
-# open index.html in your browser
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
+
+<br>
+
+---
+
+Made in Kanpur, usually with something playing in the background. 🎧
