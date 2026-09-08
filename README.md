@@ -5,7 +5,7 @@ My personal corner of the internet — a space that blends engineering, curiosit
 <br>
 
 ## 🌟 Live Website
-**Check it out here →** [vishalkaay.github.io/melodydiaries](https://vishalkaay.github.io/melodydiaries)
+**Check it out here →** [vishalkaay.github.io/melodydiaries](https://vishalkaay.github.io/)
 
 <br>
 
