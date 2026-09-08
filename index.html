@@ -1,1041 +1,452 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vishal Raj | Engineer · Creator · Musician</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #0D0F1A;
-      --bg2:       #12152A;
-      --bg3:       #181C30;
-      --gold:      #E8B86D;
-      --gold-dim:  #A07840;
-      --cream:     #F0E6D0;
-      --text:      #C8C0B4;
-      --muted:     #6B6880;
-      --border:    rgba(232,184,109,0.15);
-      --serif:     'Playfair Display', Georgia, serif;
-      --sans:      'Inter', system-ui, sans-serif;
-      --mono:      'JetBrains Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5vw;
-      height: 64px;
-      background: rgba(13,15,26,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.3rem;
-      color: var(--gold);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 5vw;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg-rings {
-      position: absolute;
-      right: -10vw;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 55vw;
-      height: 55vw;
-      max-width: 700px;
-      max-height: 700px;
-      pointer-events: none;
-      opacity: 0.06;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--gold);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
-    }
-
-    .hero-name {
-      font-family: var(--serif);
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.0;
-      margin-bottom: 0.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s forwards;
-    }
-
-    .hero-name em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .hero-tagline {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
-      color: var(--muted);
-      margin-bottom: 2.4rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.6s forwards;
-    }
-
-    /* Sound wave animation */
-    .sound-wave {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.8s forwards;
-    }
-
-    .wave-bar {
-      width: 3px;
-      background: var(--gold);
-      border-radius: 2px;
-      animation: wavePulse var(--dur, 1s) ease-in-out infinite alternate;
-      animation-delay: var(--delay, 0s);
-    }
-
-    @keyframes wavePulse {
-      from { height: 4px; opacity: 0.3; }
-      to   { height: var(--h, 24px); opacity: 0.9; }
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 1s forwards;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      background: var(--gold);
-      color: var(--bg);
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-
-    .btn-ghost {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: border-color 0.2s, color 0.2s, transform 0.2s;
-    }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 5vw;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      opacity: 0;
-      animation: fadeUp 1s 1.4s forwards;
-    }
-    .scroll-hint::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--muted);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 7rem 5vw; }
-    section:nth-child(even) { background: var(--bg2); }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--gold);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--cream);
-      font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 3rem;
-    }
-
-    .section-title em { color: var(--gold); font-style: italic; }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--text);
-      font-size: 1.05rem;
-      line-height: 1.85;
-      margin-bottom: 1.5rem;
-    }
-
-    .about-text p strong { color: var(--cream); font-weight: 600; }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.8rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s;
-    }
-    .stat-card:hover { border-color: var(--gold-dim); }
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--gold);
-    }
-
-    .stat-number {
-      font-family: var(--serif);
-      font-size: 2.6rem;
-      color: var(--gold);
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .stat-label {
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-
-    /* ── PROJECTS ── */
-    .projects-list { display: flex; flex-direction: column; gap: 1.5px; }
-
-    .project-item {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2.2rem 2.5rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 2rem;
-      align-items: center;
-      transition: background 0.25s, border-color 0.25s;
-      cursor: default;
-    }
-
-    .project-item:hover {
-      background: rgba(24, 28, 48, 0.9);
-      border-color: var(--gold-dim);
-    }
-
-    .project-num {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--gold-dim);
-      letter-spacing: 0.1em;
-      min-width: 24px;
-    }
-
-    .project-body h3 {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      color: var(--cream);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-body p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--gold);
-      background: rgba(232,184,109,0.08);
-      border: 1px solid rgba(232,184,109,0.2);
-      padding: 0.25rem 0.65rem;
-      border-radius: 2px;
-      letter-spacing: 0.06em;
-    }
-
-    .project-arrow {
-      color: var(--muted);
-      font-size: 1.2rem;
-      transition: color 0.2s, transform 0.2s;
-    }
-    .project-item:hover .project-arrow { color: var(--gold); transform: translateX(4px); }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-    }
-
-    .skill-group h3 {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 2rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .skill-item { margin-bottom: 1.8rem; }
-
-    .skill-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.6rem;
-    }
-
-    .skill-name {
-      font-size: 0.88rem;
-      color: var(--cream);
-      font-weight: 500;
-    }
-
-    .skill-pct {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--gold-dim);
-    }
-
-    .skill-bar {
-      height: 2px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 1px;
-      overflow: hidden;
-    }
-
-    .skill-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
-      border-radius: 1px;
-      transform-origin: left;
-      animation: skillGrow 1.2s ease forwards;
-      transform: scaleX(0);
-      transition: none;
-    }
-
-    @keyframes skillGrow {
-      to { transform: scaleX(1); }
-    }
-
-    /* ── EXPERIENCE ── */
-    .timeline { position: relative; padding-left: 2rem; }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 1px;
-      background: var(--border);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 3rem;
-    }
-    .timeline-item:last-child { padding-bottom: 0; }
-
-    .timeline-dot {
-      position: absolute;
-      left: -2.4rem;
-      top: 0.35rem;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--gold-dim);
-      transition: border-color 0.3s;
-    }
-    .timeline-item:hover .timeline-dot { border-color: var(--gold); }
-
-    .timeline-date {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--gold-dim);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-title {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      color: var(--cream);
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .timeline-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ── YOUTUBE ── */
-    .youtube-card {
-      max-width: 540px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--bg3);
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .youtube-card:hover { border-color: var(--gold-dim); transform: translateY(-3px); }
-
-    .yt-thumbnail {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: linear-gradient(135deg, #1a0a2e, #0d1f3c);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .yt-thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .yt-play-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(13,15,26,0.4);
-    }
-
-    .yt-play-btn {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-    .youtube-card:hover .yt-play-btn { transform: scale(1.08); }
-    .yt-play-btn svg { margin-left: 4px; }
-
-    .yt-info {
-      padding: 1.8rem;
-    }
-    .yt-info h3 {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      color: var(--cream);
-      margin-bottom: 0.4rem;
-    }
-    .yt-info p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.4rem; }
-
-    .yt-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: gap 0.2s;
-    }
-    .yt-link:hover { gap: 0.8rem; }
-
-    /* ── CONTACT ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .contact-quote {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.3rem;
-      color: var(--cream);
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-      padding-left: 1.5rem;
-      border-left: 2px solid var(--gold);
-    }
-
-    .social-links { display: flex; flex-direction: column; gap: 0.8rem; }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.88rem;
-      transition: color 0.2s;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .social-link:hover { color: var(--gold); }
-    .social-link:last-child { border-bottom: none; }
-
-    .social-icon {
-      width: 36px; height: 36px;
-      border-radius: 4px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .social-link:hover .social-icon { border-color: var(--gold-dim); background: rgba(232,184,109,0.06); }
-
-    /* Contact form */
-    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .form-field label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .form-field input,
-    .form-field textarea {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 0.85rem 1rem;
-      color: var(--cream);
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .form-field input:focus,
-    .form-field textarea:focus { border-color: var(--gold-dim); }
-
-    .form-field textarea { resize: vertical; min-height: 120px; }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 2.5rem 5vw;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-text {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-family: var(--mono);
-    }
-
-    .footer-note {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* ── MOBILE ── */
-    @media (max-width: 768px) {
-      nav { padding: 0 1.5rem; }
-      .nav-links { display: none; }
-      section { padding: 5rem 1.5rem; }
-      .about-grid, .skills-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .project-item { grid-template-columns: auto 1fr; }
-      .project-arrow { display: none; }
-      .hero-bg-rings { width: 90vw; height: 90vw; right: -30vw; opacity: 0.04; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .wave-bar { animation: none; height: 14px !important; }
-      * { animation-duration: 0.01ms !important; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Vishal Raj — senior undergraduate, machine learning builder, hardware security researcher, and musician at IIT Kanpur.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://vishalkaay.github.io/melodydiaries/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vishalkaay.github.io/melodydiaries/">
+  <meta property="og:title" content="Vishal Raj — Engineering in rhythm">
+  <meta property="og:description" content="Machine learning, hardware, systems, and songs from IIT Kanpur.">
+  <meta property="og:image" content="https://vishalkaay.github.io/melodydiaries/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vishal Raj — Engineering in rhythm">
+  <meta name="twitter:description" content="Machine learning, hardware, systems, and songs from IIT Kanpur.">
+  <meta name="twitter:image" content="https://vishalkaay.github.io/melodydiaries/assets/og.jpg">
+  <title>Vishal Raj — Engineering in rhythm</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor cursor-dot" aria-hidden="true"></div>
+  <div class="cursor cursor-ring" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#hero">Melody Diaries</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#channel">Music</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <!-- Vinyl rings background -->
-    <svg class="hero-bg-rings" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="300" cy="300" r="290" stroke="white" stroke-width="1"/>
-      <circle cx="300" cy="300" r="240" stroke="white" stroke-width="1"/>
-      <circle cx="300" cy="300" r="190" stroke="white" stroke-width="1"/>
-      <circle cx="300" cy="300" r="140" stroke="white" stroke-width="1"/>
-      <circle cx="300" cy="300" r="90" stroke="white" stroke-width="1"/>
-      <circle cx="300" cy="300" r="40" stroke="white" stroke-width="2" fill="white" fill-opacity="0.08"/>
-    </svg>
-
-    <p class="hero-eyebrow">IIT Kanpur · Chemical Engineering · 2nd Year</p>
-    <h1 class="hero-name">Vishal<br/><em>Raj</em></h1>
-    <p class="hero-tagline">Engineer by degree. Builder by obsession. Singer by soul.</p>
-
-    <!-- Sound wave -->
-    <div class="sound-wave" aria-hidden="true">
-      <div class="wave-bar" style="--h:8px;  --dur:0.9s; --delay:0.0s;"></div>
-      <div class="wave-bar" style="--h:20px; --dur:1.1s; --delay:0.1s;"></div>
-      <div class="wave-bar" style="--h:32px; --dur:0.8s; --delay:0.2s;"></div>
-      <div class="wave-bar" style="--h:16px; --dur:1.3s; --delay:0.0s;"></div>
-      <div class="wave-bar" style="--h:40px; --dur:0.9s; --delay:0.1s;"></div>
-      <div class="wave-bar" style="--h:28px; --dur:1.0s; --delay:0.3s;"></div>
-      <div class="wave-bar" style="--h:44px; --dur:1.2s; --delay:0.1s;"></div>
-      <div class="wave-bar" style="--h:32px; --dur:0.8s; --delay:0.2s;"></div>
-      <div class="wave-bar" style="--h:20px; --dur:1.1s; --delay:0.0s;"></div>
-      <div class="wave-bar" style="--h:36px; --dur:0.9s; --delay:0.1s;"></div>
-      <div class="wave-bar" style="--h:12px; --dur:1.3s; --delay:0.3s;"></div>
-      <div class="wave-bar" style="--h:28px; --dur:1.0s; --delay:0.0s;"></div>
-      <div class="wave-bar" style="--h:44px; --dur:0.9s; --delay:0.2s;"></div>
-      <div class="wave-bar" style="--h:36px; --dur:1.1s; --delay:0.1s;"></div>
-      <div class="wave-bar" style="--h:20px; --dur:0.8s; --delay:0.0s;"></div>
-      <div class="wave-bar" style="--h:8px;  --dur:1.2s; --delay:0.3s;"></div>
+  <header class="site-header" id="top">
+    <a class="wordmark magnetic" href="#top" aria-label="Vishal Raj, home">
+      <span>Vishal</span><i>®</i>
+    </a>
+    <div class="header-status" aria-label="Current status">
+      <span class="pulse"></span>
+      <span>Open to ambitious ideas</span>
     </div>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#music">Music</a>
+      <a href="#shorts">Shorts</a>
+      <a href="#frames">Frames</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle magnetic" type="button" aria-expanded="false" aria-controls="mobile-menu">
+      <span>Menu</span><i></i><i></i>
+    </button>
+  </header>
 
-    <div class="hero-actions">
-      <a class="btn-primary" href="#projects">View Work</a>
-      <a class="btn-ghost" href="assets/resume.pdf" target="_blank">Download Résumé →</a>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <p>Navigate / 2026</p>
+      <a href="#work"><span>01</span>Work</a>
+      <a href="#about"><span>02</span>About</a>
+      <a href="#music"><span>03</span>Music</a>
+      <a href="#shorts"><span>04</span>Shorts</a>
+      <a href="#frames"><span>05</span>Frames</a>
+      <a href="#contact"><span>06</span>Contact</a>
     </div>
+  </div>
 
-    <p class="scroll-hint">Scroll to explore</p>
-  </section>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas id="signal-canvas" aria-hidden="true"></canvas>
+      <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-two" aria-hidden="true"></div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label">Who I Am</p>
-    <h2 class="section-title">The Maker<br/><em>&amp; The Musician</em></h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>Hi — I'm <strong>Vishal Raj</strong>, a fourth-year <strong>B.Tech student at IIT Kanpur</strong> studying Chemical Engineering. I live at the intersection of logic and creativity.</p>
-        <p>My technical work spans <strong>machine learning</strong>, full-stack development, and system automation. Off-screen, I'm a singer covering old Bollywood classics with a soulful twist — the kind that gives you goosebumps on a rainy evening.</p>
-        <p>I've led logistics for <strong>100+ athletes at Udghosh</strong> and brought creative decor concepts to life at <strong>Antaragni</strong> — India's biggest cultural fest.</p>
+      <div class="hero-kicker reveal">
+        <span>Portfolio / 2026</span>
+        <span>26.4499° N, 80.3319° E</span>
       </div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">3+</div>
-          <div class="stat-label">ML / AI Projects</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Fest Leadership Roles</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">∞</div>
-          <div class="stat-label">Songs in my heart</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">1</div>
-          <div class="stat-label">IIT that matters 😄</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <p class="section-label">Work</p>
-    <h2 class="section-title">What I've<br/><em>Built</em></h2>
-    <div class="projects-list">
-      <div class="project-item">
-        <span class="project-num">01</span>
-        <div class="project-body">
-          <h3>Mess Sentiment Analyzer</h3>
-          <p>Analyzing student mess feedback using NLP and ML to extract sentiment trends and actionable dining insights.</p>
-          <div class="tags">
-            <span class="tag">NLP</span>
-            <span class="tag">Python</span>
-            <span class="tag">Transformers</span>
-          </div>
-        </div>
-        <span class="project-arrow">→</span>
-      </div>
-      <div class="project-item">
-        <span class="project-num">02</span>
-        <div class="project-body">
-          <h3>Tweet Decoder</h3>
-          <p>Classifying tone and emotion in tweets using transformer models — sarcasm, sentiment, and intent detection.</p>
-          <div class="tags">
-            <span class="tag">BERT</span>
-            <span class="tag">HuggingFace</span>
-            <span class="tag">ML</span>
-          </div>
-        </div>
-        <span class="project-arrow">→</span>
-      </div>
-      <div class="project-item">
-        <span class="project-num">03</span>
-        <div class="project-body">
-          <h3>Humanoid Locomotion</h3>
-          <p>Simulating joint movement patterns in humanoid robotics — studying biomechanical gait with computational models.</p>
-          <div class="tags">
-            <span class="tag">Robotics</span>
-            <span class="tag">Simulation</span>
-            <span class="tag">Python</span>
-          </div>
-        </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </div>
-  </section>
+      <h1 id="hero-title" class="hero-title" aria-label="Vishal Raj">
+        <span class="title-line reveal"><span>Vishal</span></span>
+        <span class="title-line title-line-alt reveal"><span>Raj<span class="title-mark">*</span></span></span>
+      </h1>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <p class="section-label">Capabilities</p>
-    <h2 class="section-title">What I<br/><em>Bring</em></h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h3>Technical</h3>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Python</span><span class="skill-pct">85%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Machine Learning</span><span class="skill-pct">75%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:75%; animation-delay:0.1s"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Full Stack Dev</span><span class="skill-pct">65%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:65%; animation-delay:0.2s"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Data Analysis</span><span class="skill-pct">70%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:70%; animation-delay:0.3s"></div></div>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Creative</h3>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Vocal Performance</span><span class="skill-pct">80%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:80%; animation-delay:0.1s"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Event Coordination</span><span class="skill-pct">90%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:90%; animation-delay:0.2s"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Music Production</span><span class="skill-pct">60%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:60%; animation-delay:0.3s"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Creative Design</span><span class="skill-pct">70%</span></div>
-          <div class="skill-bar"><div class="skill-fill" style="width:70%; animation-delay:0.4s"></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <p class="section-label">Timeline</p>
-    <h2 class="section-title">Where I've<br/><em>Shown Up</em></h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2024 — Present</div>
-        <div class="timeline-title">Senior Executive · Udghosh</div>
-        <div class="timeline-desc">Managed logistics and coordination for 100+ football participants across multiple colleges at IIT Kanpur's sports fest.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2024 — Present</div>
-        <div class="timeline-title">Volunteer · Antaragni</div>
-        <div class="timeline-desc">Worked with the show management team to design and execute creative decor plans at India's biggest cultural festival.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2023</div>
-        <div class="timeline-title">Intern · ML Kickstart Program</div>
-        <div class="timeline-desc">Built and deployed ML projects using Streamlit and REST APIs — from data preprocessing to production deployment.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- YOUTUBE -->
-  <section id="channel">
-    <p class="section-label">Music</p>
-    <h2 class="section-title">Old Bollywood,<br/><em>New Soul</em></h2>
-    <div class="youtube-card">
-      <div class="yt-thumbnail">
-        <img src="assets/youtube-profile.jpg" alt="vishalkaay Music channel" onerror="this.style.display='none'" />
-        <div class="yt-play-overlay">
-          <div class="yt-play-btn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <polygon points="5,3 19,12 5,21" fill="#0D0F1A"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="yt-info">
-        <h3>vishalkaay Music</h3>
-        <p>Old Bollywood Covers · Soulful Singing 🎶</p>
-        <a class="yt-link" href="https://www.youtube.com/@vishalr23" target="_blank" rel="noopener">
-          Visit Channel <span>→</span>
+      <div class="hero-copy reveal">
+        <p>I build intelligent systems, explore hardware, and turn old melodies into new memories.</p>
+        <a class="round-link magnetic" href="#work" aria-label="Explore selected work">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path id="circlePath" d="M 50, 50 m -32, 0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0" fill="none"/>
+            <text><textPath href="#circlePath">EXPLORE WORK • EXPLORE WORK • </textPath></text>
+          </svg>
+          <span>↓</span>
         </a>
       </div>
-    </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label">Let's Connect</p>
-    <h2 class="section-title">Start a<br/><em>Conversation</em></h2>
-    <div class="contact-grid">
-      <div>
-        <blockquote class="contact-quote">
-          The best things happen when curious people talk to each other.
-        </blockquote>
-        <div class="social-links">
-          <a class="social-link" href="mailto:vishalr23@iitk.ac.in">
-            <div class="social-icon">
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" stroke="#E8B86D" stroke-width="1.5"/><path d="M2 8l10 7 10-7" stroke="#E8B86D" stroke-width="1.5"/></svg>
-            </div>
-            vishalr23@iitk.ac.in
-          </a>
-          <a class="social-link" href="https://github.com/vishalkaay" target="_blank" rel="noopener">
-            <div class="social-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8B86D"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-            </div>
-            github.com/vishalkaay
-          </a>
-          <a class="social-link" href="https://www.linkedin.com/in/vishal-raj-2a074823b/" target="_blank" rel="noopener">
-            <div class="social-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8B86D"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </div>
-            linkedin.com/in/vishal-raj
-          </a>
-          <a class="social-link" href="https://www.instagram.com/_vish.aaaal" target="_blank" rel="noopener">
-            <div class="social-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8B86D"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </div>
-            @_vish.aaaal
-          </a>
-          <a class="social-link" href="https://x.com/vishalkaaay" target="_blank" rel="noopener">
-            <div class="social-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8B86D"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.738l7.73-8.835L1.254 2.25H8.08l4.261 5.635 5.903-5.635zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </div>
-            @vishalkaaay
+      <div class="hero-meta reveal">
+        <div><b>Discipline</b><span>Chemical Engineering</span></div>
+        <div><b>Institute</b><span>IIT Kanpur</span></div>
+        <div><b>Frequency</b><span>Code × Music</span></div>
+      </div>
+
+      <div class="hero-side-label" aria-hidden="true">Engineer by degree / Builder by obsession / Singer by soul</div>
+    </section>
+
+    <section class="manifesto section-shell" id="about" aria-labelledby="manifesto-title">
+      <div class="section-index reveal"><span>01</span><span>The frequency</span></div>
+      <div class="manifesto-grid">
+        <div class="portrait-wrap reveal">
+          <figure class="portrait" data-tilt>
+            <picture><source srcset="assets/portrait.webp" type="image/webp"><img src="assets/portrait.jpg" alt="Vishal Raj in daylight, looking off camera, with foliage behind him" width="900" height="1200" loading="lazy" decoding="async"></picture>
+            <div class="portrait-stamp">IITK / 23—27</div>
+          </figure>
+          <p class="image-note">A builder with an artist’s ear.</p>
+        </div>
+        <div class="manifesto-copy">
+          <p class="eyebrow reveal">Between logic &amp; feeling</p>
+          <h2 id="manifesto-title" class="display-copy">I don’t fit into one box. I build the box, test its limits, then put a soundtrack under it.</h2>
+          <div class="body-columns reveal">
+            <p>I’m Vishal Raj, a senior Chemical Engineering undergraduate at IIT Kanpur working across machine learning, IoT security, high-performance computing, hardware, and computational modeling.</p>
+            <p>My curiosity moves freely—from pipelining AES on an FPGA and accelerating scientific solvers on GPUs to auditing connected devices, modeling epigenetic signals, and singing timeless Bollywood songs.</p>
+          </div>
+          <a class="text-link magnetic" href="assets/resume.pdf" target="_blank" rel="noopener">
+            Read my résumé <span>↗</span>
           </a>
         </div>
       </div>
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-field">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" placeholder="Ravi Shankar" required />
+    </section>
+
+    <section class="work section-shell" id="work" aria-labelledby="work-title">
+      <div class="section-index reveal"><span>02</span><span>Selected transmissions</span></div>
+      <div class="section-heading reveal">
+        <h2 id="work-title">Work that<br><em>moves boundaries.</em></h2>
+        <p>Selected explorations across silicon, scientific computing, machine intelligence, and security.</p>
+      </div>
+
+      <div class="project-stack">
+        <article class="project-card project-featured reveal" data-accent="lime">
+          <div class="project-topline"><span>01 / Hardware</span><span>2025</span></div>
+          <div class="project-visual visual-aes" aria-hidden="true">
+            <div class="chip">
+              <span>AES</span><small>128</small>
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <div class="binary-rain">00110110 11001001 10110010<br>11101000 00010111 01100101<br>10100101 11010010 00111001</div>
+          </div>
+          <div class="project-content">
+            <p class="project-type">Course project / CS666</p>
+            <h3>Pipelined AES-128<br>Hardware Core</h3>
+            <p>An 11-stage outer-round pipeline with parallel key expansion, NIST-vector verification, and AXI4-Lite deployment on a PYNQ-Z2.</p>
+            <ul class="project-tags" aria-label="Technologies"><li>Verilog</li><li>Vivado</li><li>FPGA</li><li>AXI4-Lite</li></ul>
+          </div>
+        </article>
+
+        <div class="project-duo">
+          <article class="project-card reveal" data-accent="orange">
+            <div class="project-topline"><span>02 / Computational Biology</span><span>2026</span></div>
+            <div class="project-visual visual-pinn" aria-hidden="true">
+              <canvas class="mini-canvas" data-visual="field"></canvas>
+              <div class="formula">5 marks × 100 bins → expression</div>
+            </div>
+            <div class="project-content">
+              <p class="project-type">Course project / CHE629</p>
+              <h3>Gene Expression<br>with Dual Attention</h3>
+              <p>A hierarchical BiLSTM predicting expression across 19,799 genes with 11× fewer parameters than the CNN baseline and 5× higher minority-class F1.</p>
+              <ul class="project-tags"><li>BiLSTM</li><li>Attention</li><li>Genomics</li></ul>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-accent="blue">
+            <div class="project-topline"><span>03 / Security</span><span>2025</span></div>
+            <div class="project-visual visual-gif" aria-hidden="true">
+              <div class="hex-window">
+                <div class="window-bar"><i></i><i></i><i></i><span>scan.gif</span></div>
+                <code>47 49 46 38 39 61<br><mark>21 FF 0B 4D 41 4C</mark><br>3B // trailer valid</code>
+              </div>
+            </div>
+            <div class="project-content">
+              <p class="project-type">GIF forensics / Self project</p>
+              <h3>GIFSleuth<br>Security Scanner</h3>
+              <p>A zero-dependency GIF87a/89a forensic scanner with seven detectors, 19 embedded signatures, entropy analysis, CI reporting, and 143 tests.</p>
+              <ul class="project-tags"><li>Python</li><li>Forensics</li><li>Steganography</li></ul>
+            </div>
+          </article>
         </div>
-        <div class="form-field">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="hello@example.com" required />
+
+        <article class="project-card project-horizontal reveal" data-accent="violet">
+          <div class="project-topline"><span>04 / GPU Computing</span><span>2026</span></div>
+          <div class="project-visual visual-graph" aria-hidden="true">
+            <svg viewBox="0 0 600 260">
+              <g class="edges"><path d="M24 214 C120 180 140 58 235 92 S350 238 438 137 S530 22 584 52 M24 232 C135 208 166 110 250 120 S365 220 438 157 S540 70 584 78 M24 196 C104 137 152 35 235 70 S353 200 424 118 S525 4 584 30"/></g>
+              <g class="nodes"><circle cx="24" cy="214" r="7"/><circle cx="235" cy="92" r="7"/><circle cx="438" cy="137" r="7"/><circle cx="584" cy="52" r="7"/></g>
+            </svg>
+          </div>
+          <div class="project-content">
+            <p class="project-type">High-performance computing</p>
+            <h3>2D Poisson Solver:<br>GPU Acceleration</h3>
+            <p>A spectral FFT solver accelerated on NVIDIA hardware—cutting a 1024×1024 solve from 28.9 seconds to 0.36 milliseconds while retaining machine precision.</p>
+            <ul class="project-tags"><li>CuPy</li><li>NVIDIA Warp</li><li>FFT</li><li>DLPack</li></ul>
+          </div>
+        </article>
+      </div>
+
+      <a class="archive-link reveal magnetic" href="https://github.com/vishalkaay" target="_blank" rel="noopener">
+        <span>Explore the code archive</span><i>GitHub ↗</i>
+      </a>
+    </section>
+
+    <section class="capabilities section-shell" aria-labelledby="capabilities-title">
+      <div class="section-index reveal"><span>03</span><span>Operating range</span></div>
+      <div class="capabilities-layout">
+        <div class="sticky-title reveal">
+          <p class="eyebrow">Tools are temporary.<br>Thinking compounds.</p>
+          <h2 id="capabilities-title">How I<br><em>build.</em></h2>
         </div>
-        <div class="form-field">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell me what you're thinking…" required></textarea>
+        <div class="capability-list">
+          <article class="capability reveal"><span>01</span><h3>Machine Intelligence</h3><p>TensorFlow, scikit-learn, CNNs, BiLSTMs, attention, Bayesian models, feature engineering, and data analysis.</p></article>
+          <article class="capability reveal"><span>02</span><h3>Systems &amp; Security</h3><p>C, C++, Python, Bash, IoT auditing, firmware extraction, binary forensics, Linux, and reliable CLI tooling.</p></article>
+          <article class="capability reveal"><span>03</span><h3>Hardware &amp; Compute</h3><p>Verilog, Xilinx Vivado, NVIDIA Warp, CuPy, MATLAB, FPGA deployment, zero-copy GPU pipelines, and scientific modeling.</p></article>
+          <article class="capability reveal"><span>04</span><h3>Product Craft</h3><p>HTML, CSS, Flask, Streamlit, Git, responsive interfaces, technical mentoring, and shipping complete systems.</p></article>
         </div>
-        <button type="submit" class="btn-primary" style="width:fit-content">Send Message →</button>
-        <p id="form-status" style="font-size:0.82rem; color:var(--gold); display:none; margin-top:0.5rem;">Message sent! I'll get back to you soon.</p>
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-text">© 2025 Vishal Raj · IIT Kanpur</span>
-    <span class="footer-note">Built with ♪ & code</span>
-  </footer>
+    <section class="music" id="music" aria-labelledby="music-title">
+      <div class="music-bg" aria-hidden="true"></div>
+      <div class="music-inner section-shell">
+        <div class="section-index reveal"><span>04</span><span>After hours</span></div>
+        <div class="music-grid">
+          <div class="album reveal">
+            <div class="record" aria-hidden="true"><div class="record-label">VR<br><small>45 RPM</small></div></div>
+            <div class="album-cover">
+              <picture><source srcset="assets/melody-cover.webp" type="image/webp"><img src="assets/melody-cover.jpg" alt="Vishal Raj resting against a rock face, one arm behind his head" width="1000" height="1000" loading="lazy" decoding="async"></picture>
+              <span>Melody<br>Diaries</span>
+            </div>
+          </div>
+          <div class="music-copy">
+            <p class="eyebrow reveal">The other side of the record</p>
+            <h2 id="music-title">Old Bollywood.<br><em>New soul.</em></h2>
+            <p class="music-lead reveal">Engineering sharpens how I think. Music keeps alive why I feel.</p>
+            <div class="track-card reveal">
+              <button class="play-button magnetic" type="button" aria-label="Play sample visualization" aria-pressed="false"><span class="play-icon">▶</span></button>
+              <div><b>Melody Diaries</b><span>Vocal covers / timeless songs</span></div>
+              <div class="waveform" aria-hidden="true"></div>
+              <span class="track-time">02:23</span>
+            </div>
+            <a class="text-link magnetic" href="https://www.youtube.com/@vishalr23" target="_blank" rel="noopener">Listen on YouTube <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    // Smooth scroll to fix nav offset
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+    <section class="reels section-shell" id="shorts" aria-labelledby="reels-title">
+      <div class="section-index reveal"><span>05</span><span>On repeat</span></div>
+      <div class="reels-heading reveal">
+        <h2 id="reels-title">Nine takes,<br><em>most played.</em></h2>
+        <p>One microphone, one take, usually well past midnight. These are the nine people keep coming back to — play counts read from YouTube in September 2026.</p>
+      </div>
+      <div class="reels-body">
+        <div class="reel-stage" aria-hidden="true">
+          <a class="stage-link" href="https://www.youtube.com/@vishalr23" tabindex="-1">
+            <span class="stage-frame">
+              <img class="stage-img" src="assets/short-baarish.webp" alt="" width="600" height="600" decoding="async">
+              <span class="stage-glyph">&#9654;</span>
+            </span>
+            <span class="stage-meta"><b class="stage-title">Baarish</b><small class="stage-sub">Atif Aslam</small></span>
+          </a>
+          <p class="stage-hint">Hover a title to preview / click to play on YouTube</p>
+          <dl class="stage-stats">
+            <div><dt>Plays, these nine</dt><dd>11.5K</dd></div>
+            <div><dt>Full catalogue</dt><dd>48 shorts</dd></div>
+            <div><dt>Channel</dt><dd>@vishalr23</dd></div>
+          </dl>
+        </div>
+        <ol class="reel-list">
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/knaWiI1vau4" target="_blank" rel="noopener" style="--w: 100" data-thumb="assets/short-baarish.webp" data-title="Baarish" data-sub="Atif Aslam">
+              <span class="reel-no">01</span>
+              <img class="reel-thumb" src="assets/short-baarish.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Baarish</b><small>Atif Aslam</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>2.1K plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/IoOwFIrsBUI" target="_blank" rel="noopener" style="--w: 79" data-thumb="assets/short-dooron.webp" data-title="Dooron Dooron" data-sub="Hindi single">
+              <span class="reel-no">02</span>
+              <img class="reel-thumb" src="assets/short-dooron.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Dooron Dooron</b><small>Hindi single</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>1.7K plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/lspKlBMjqP8" target="_blank" rel="noopener" style="--w: 61" data-thumb="assets/short-aawara.webp" data-title="Hai Apna Dil To Awara" data-sub="Hemant Kumar">
+              <span class="reel-no">03</span>
+              <img class="reel-thumb" src="assets/short-aawara.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Hai Apna Dil To Awara</b><small>Hemant Kumar</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>1.3K plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/l0H5o7wHMIc" target="_blank" rel="noopener" style="--w: 61" data-thumb="assets/short-shukran.webp" data-title="Shukran Allah" data-sub="Sonu Nigam">
+              <span class="reel-no">04</span>
+              <img class="reel-thumb" src="assets/short-shukran.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Shukran Allah</b><small>Sonu Nigam</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>1.3K plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/v6Ce-Fs8dKU" target="_blank" rel="noopener" style="--w: 60" data-thumb="assets/short-wolamhe.webp" data-title="Wo Lamhe" data-sub="Atif Aslam">
+              <span class="reel-no">05</span>
+              <img class="reel-thumb" src="assets/short-wolamhe.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Wo Lamhe</b><small>Atif Aslam</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>1.3K plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/XJ4xZDXuSco" target="_blank" rel="noopener" style="--w: 52" data-thumb="assets/short-tumho.webp" data-title="Tum Ho" data-sub="Mohit Chauhan">
+              <span class="reel-no">06</span>
+              <img class="reel-thumb" src="assets/short-tumho.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Tum Ho</b><small>Mohit Chauhan</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>1.1K plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/pFxqvP1p_88" target="_blank" rel="noopener" style="--w: 48" data-thumb="assets/short-rishta.webp" data-title="Tera Mera Rishta Purana" data-sub="Mustafa Zahid">
+              <span class="reel-no">07</span>
+              <img class="reel-thumb" src="assets/short-rishta.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Tera Mera Rishta Purana</b><small>Mustafa Zahid</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>1.0K plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/SFlSr0TXBaE" target="_blank" rel="noopener" style="--w: 45" data-thumb="assets/short-samjhawan.webp" data-title="Main Tenu Samjhawan Ki" data-sub="Arijit Singh">
+              <span class="reel-no">08</span>
+              <img class="reel-thumb" src="assets/short-samjhawan.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Main Tenu Samjhawan Ki</b><small>Arijit Singh</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>954 plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://www.youtube.com/shorts/5KWTGck_n5I" target="_blank" rel="noopener" style="--w: 45" data-thumb="assets/short-aashiqui.webp" data-title="Tu Hi Hai Aashiqui" data-sub="Arijit Singh">
+              <span class="reel-no">09</span>
+              <img class="reel-thumb" src="assets/short-aashiqui.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+              <span class="reel-text"><b>Tu Hi Hai Aashiqui</b><small>Arijit Singh</small></span>
+              <span class="reel-plays"><i aria-hidden="true"></i>944 plays</span>
+              <span class="reel-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        </ol>
+        <a class="text-link magnetic reels-cta reveal" href="https://www.youtube.com/@vishalr23/shorts" target="_blank" rel="noopener">All shorts on YouTube <span>&#8599;</span></a>
+      </div>
+    </section>
 
-    // Intersection observer for skill bars
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.skill-fill').forEach(bar => {
-            bar.style.animation = 'none';
-            bar.offsetHeight; // reflow
-            bar.style.animation = '';
-          });
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
+    <section class="experience section-shell" aria-labelledby="experience-title">
+      <div class="section-index reveal"><span>06</span><span>Beyond the screen</span></div>
+      <div class="experience-grid">
+        <h2 id="experience-title" class="reveal">Built with people,<br><em>not just pixels.</em></h2>
+        <div class="timeline">
+          <article class="timeline-row reveal"><time>2026</time><div><h3>Security Intern · C3iHub</h3><p>Designing an IoT security testbed and integrated workflow for hardware interfaces, firmware extraction, wireless reconnaissance, and controlled Wi-Fi auditing.</p></div><span>IIT Kanpur</span></article>
+          <article class="timeline-row reveal"><time>2025—26</time><div><h3>Project Mentor · MediQ</h3><p>Guided approximately 25 students from exploratory data analysis through ML fundamentals to a complete Flask diagnosis application.</p></div><span>IIT Kanpur</span></article>
+          <article class="timeline-row reveal"><time>2024</time><div><h3>Senior Executive · Udghosh</h3><p>Coordinated registration, scheduling, and ground operations for 100+ football participants.</p></div><span>Sports Festival</span></article>
+        </div>
+      </div>
+    </section>
 
-    document.querySelectorAll('#skills').forEach(s => observer.observe(s));
+    <section class="frames section-shell" id="frames" aria-labelledby="frames-title">
+      <div class="section-index reveal"><span>07</span><span>Off the clock</span></div>
+      <div class="frames-heading reveal">
+        <h2 id="frames-title">Away from<br><em>the screen.</em></h2>
+        <p>The detours matter. Ridgelines, river water, floodlit stands — the long quiet stretches where half my ideas actually show up.</p>
+      </div>
+      <div class="frame-mosaic">
+        <figure class="frame m-summit reveal">
+          <picture>
+            <source srcset="assets/frame-summit.webp" type="image/webp">
+            <img src="assets/frame-summit.jpg" alt="Vishal Raj seen from behind on a hilltop, looking out over layers of mist-covered hills" width="1400" height="560" loading="lazy" decoding="async">
+          </picture>
+          <figcaption><span>01</span><b>Ridgeline, above the haze</b></figcaption>
+        </figure>
+        <figure class="frame m-stupa reveal">
+          <picture>
+            <source srcset="assets/frame-stupa.webp" type="image/webp">
+            <img src="assets/frame-stupa.jpg" alt="Vishal Raj standing on a paved avenue in front of a large seated stone statue" width="560" height="933" loading="lazy" decoding="async">
+          </picture>
+          <figcaption><span>02</span><b>Long walk, quiet morning</b></figcaption>
+        </figure>
+        <figure class="frame m-falls reveal">
+          <picture>
+            <source srcset="assets/frame-falls.webp" type="image/webp">
+            <img src="assets/frame-falls.jpg" alt="Vishal Raj standing on a boulder in a rocky gorge beside a waterfall" width="560" height="933" loading="lazy" decoding="async">
+          </picture>
+          <figcaption><span>03</span><b>Cold water, warm jacket</b></figcaption>
+        </figure>
+        <figure class="frame m-stadium reveal">
+          <picture>
+            <source srcset="assets/frame-stadium.webp" type="image/webp">
+            <img src="assets/frame-stadium.jpg" alt="Vishal Raj at a floodlit cricket stadium with the crowd and pitch behind him" width="900" height="720" loading="lazy" decoding="async">
+          </picture>
+          <figcaption><span>04</span><b>Floodlights and a full house</b></figcaption>
+        </figure>
+        <figure class="frame m-cafe reveal">
+          <picture>
+            <source srcset="assets/frame-cafe.webp" type="image/webp">
+            <img src="assets/frame-cafe.jpg" alt="Vishal Raj indoors in a striped shirt, ceiling lights overhead" width="560" height="933" loading="lazy" decoding="async">
+          </picture>
+          <figcaption><span>05</span><b>Between builds</b></figcaption>
+        </figure>
+        <figure class="frame m-hills reveal">
+          <picture>
+            <source srcset="assets/frame-hills.webp" type="image/webp">
+            <img src="assets/frame-hills.jpg" alt="Vishal Raj standing on a hillside above a turquoise river, mountains rising behind him" width="560" height="933" loading="lazy" decoding="async">
+          </picture>
+          <figcaption><span>06</span><b>Higher ground</b></figcaption>
+        </figure>
+        <figure class="frame m-river reveal">
+          <picture>
+            <source srcset="assets/frame-river.webp" type="image/webp">
+            <img src="assets/frame-river.jpg" alt="Vishal Raj sitting on the bow of a wooden boat on a wide river at dusk" width="900" height="720" loading="lazy" decoding="async">
+          </picture>
+          <figcaption><span>07</span><b>Slow water, loud thoughts</b></figcaption>
+        </figure>
+      </div>
+    </section>
 
-    // Contact form
-    function handleSubmit(e) {
-      e.preventDefault();
-      const status = document.getElementById('form-status');
-      status.style.display = 'block';
-      e.target.reset();
-    }
-
-    // Nav active state
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) current = s.id;
-      });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
-      });
-    });
-  </script>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-marquee" aria-hidden="true"><div>LET’S MAKE SOMETHING RESONATE — LET’S MAKE SOMETHING RESONATE —&nbsp;</div></div>
+      <div class="contact-inner section-shell">
+        <p class="eyebrow reveal">Have an idea, role, or unlikely collaboration?</p>
+        <h2 id="contact-title" class="reveal">Start with<br><em>hello.</em></h2>
+        <a class="email-link magnetic reveal" href="mailto:vishalr23@iitk.ac.in">vishalr23@iitk.ac.in <span>↗</span></a>
+        <div class="contact-footer reveal">
+          <div class="socials">
+            <a href="https://github.com/vishalkaay" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/vishal-raj-2a074823b/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://www.instagram.com/highonnotess/" target="_blank" rel="noopener">Instagram ↗</a>
+            <a href="https://x.com/vishalkaaay" target="_blank" rel="noopener">X ↗</a>
+          </div>
+          <p>© <span id="year">2026</span> Vishal Raj<br>Kanpur, India</p>
+          <a class="back-top magnetic" href="#top">Back to top ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
